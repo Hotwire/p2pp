@@ -14,6 +14,11 @@ from p2pp.formatnumbers import hexify_short, hexify_float, hexify_long, hexify_b
 import json
 import p2pp.purgetower as purgetower
 
+# SECTION Initial Pallet Connect
+def getpalett_connect():
+    doconnect = [";Connect to Palette-\n", "PALETTE_CONNECT\n", ";-------------------\n"]
+
+    return doconnect
 
 # SECTION Algorithm Processing
 
@@ -201,7 +206,7 @@ def header_generate_omega(job_name):
         gui.log_warning("This does not look like a multi-colour file.\n")
 
     if v.palette3:
-        return {'header': [], 'summary': generatesummary(), 'warnings': generatewarnings()}
+        return {getpalette_connect(), 'header': [], 'summary': generatesummary(), 'warnings': generatewarnings()}
 
     algorithm_create_table()
     if not v.palette_plus:
@@ -343,10 +348,11 @@ def header_generate_omega_palette2(job_name):
         if not v.klipper:
             header.append("T0\n")
 
+        doconnect = getpalette_connect()
         summary = generatesummary()
         warnings = generatewarnings()
 
-    return {'header': header, 'summary': summary, 'warnings': warnings}
+    return {doconnect, 'header': header, 'summary': summary, 'warnings': warnings}
 
 
 
